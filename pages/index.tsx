@@ -1,30 +1,42 @@
 import Head from 'next/head';
-import Card from '../components/common/Card';
-import Button from '../components/common/Button';
-import { DEFAULT_IMAGE } from '../constants';
+import HeroSection from '@/components/homepage/HeroSection';
+import PropertyCard from '@/components/homepage/PropertyCard';
+import Pill from '@/components/Pill';
+import { PROPERTYLISTINGSAMPLE } from '@/constants';
+
+const filters = ["All", "Top Villa", "Free Reschedule", "Book Now, Pay later", "Self Checkin", "Instant Book"];
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>ALX Listing App</title>
+        <title>Homepage</title>
       </Head>
-      <main className="p-6">
-        <h1 className="text-3xl font-bold mb-4">Welcome to ALX Listing
 
-        </h1>
 
-        <Card
-          title="Modern Apartment"
-          description="Beautiful apartment in the heart of the city."
-          imageUrl={DEFAULT_IMAGE}
-        />
+      <header>
 
-        <div className="mt-4">
-          <Button text="Book Now" onClick={() => alert('Apartment Booked!')} />
-        </div>
 
-      </main>
+      
+       <HeroSection />
+
+      </header>
+
+      
+
+     
+      <div className="flex flex-wrap px-4 my-6">
+        {filters.map((filter, idx) => (
+          <Pill key={filter} label={filter} active={idx === 0} />
+        ))}
+      </div>
+
+     
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 py-6">
+        {PROPERTYLISTINGSAMPLE.map((property, index) => (
+          <PropertyCard key={index} property={property} />
+        ))}
+      </div>
     </>
   );
 }
