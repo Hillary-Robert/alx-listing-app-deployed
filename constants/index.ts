@@ -1,7 +1,6 @@
 
 export const DEFAULT_IMAGE = '/assets/apartment.jpg';
 
-
 import { PropertyProps } from "@/interfaces";
 
 export const PROPERTYLISTINGSAMPLE: PropertyProps []  =  [

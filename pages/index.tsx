@@ -13,16 +13,9 @@ export default function Home() {
         <title>Homepage</title>
       </Head>
 
-
-      <header>
-
-
-      
+      <header>     
        <HeroSection />
-
       </header>
-
-      
 
      
       <div className="flex flex-wrap px-4 my-6">
