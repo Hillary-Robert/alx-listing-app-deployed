@@ -3,6 +3,8 @@ import BookingForm from '@/components/booking/BookingForm';
 import CancellationPolicy from '@/components/booking/CancellationPolicy';
 import OrderSummary from '@/components/booking/OrderSummary';
 import React from 'react'
+import axios from 'axios';
+import { useState } from 'react';
 
 export default function BookingPage() {
 
