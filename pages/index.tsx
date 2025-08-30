@@ -1,35 +1,54 @@
-import Head from 'next/head';
-import HeroSection from '@/components/homepage/HeroSection';
-import PropertyCard from '@/components/homepage/PropertyCard';
-import Pill from '@/components/Pill';
-import { PROPERTYLISTINGSAMPLE } from '@/constants';
+import Head from "next/head";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import HeroSection from "@/components/homepage/HeroSection";
+import PropertyCard from "@/components/homepage/PropertyCard";
+import Pill from "@/components/Pill";
+import { PROPERTYLISTINGSAMPLE } from "@/constants";
+import { PropertyProps } from "@/interfaces";
 
-const filters = ["All", "Top Villa", "Free Reschedule", "Book Now, Pay later", "Self Checkin", "Instant Book"];
+const filters = [
+  "All",
+  "Top Villa",
+  "Free Reschedule",
+  "Book Now, Pay later",
+  "Self Checkin",
+  "Instant Book",
+];
 
 export default function Home() {
+  const [properties, setProperties] = useState<PropertyProps[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        const response = await axios.get("/api/properties");
+        setProperties(response.data);
+      } catch (error) {
+        console.error("Error fetching properties:", error)
+      }finally{
+        setLoading(false)
+      }
+    };
+    fetchProperties()
+  }, []);
+
+  if(loading){
+    return <p>Loading....</p>
+  }
+
   return (
     <>
-      <Head>
-        <title>Homepage</title>
-      </Head>
 
-      <header>     
-       <HeroSection />
-      </header>
-
-     
-      <div className="flex flex-wrap px-4 my-6">
-        {filters.map((filter, idx) => (
-          <Pill key={filter} label={filter} active={idx === 0} />
-        ))}
-      </div>
-
-     
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 py-6">
-        {PROPERTYLISTINGSAMPLE.map((property, index) => (
-          <PropertyCard key={index} property={property} />
-        ))}
-      </div>
+    <div className="grid grid-cols-3 gap-4">
+      {
+        properties.map((property)=>(
+          <PropertyCard key={property.id} property={property}/>
+        ))
+      }
+    </div>
+      
     </>
   );
 }
