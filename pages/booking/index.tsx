@@ -1,36 +1,43 @@
 
-import BookingForm from '@/components/booking/BookingForm';
-import CancellationPolicy from '@/components/booking/CancellationPolicy';
-import OrderSummary from '@/components/booking/OrderSummary';
-import React from 'react'
-import axios from 'axios';
-import { useState } from 'react';
+import { useState } from "react";
 
-export default function BookingPage() {
+export default function BookingForm() {
+  const [] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    cardNumber: "",
+    expirationDate: "",
+    cvv: "",
+    billingAddress: "",
+  });
 
-  const bookingDetails = {
-    propertyName: "Villa Arrecife Beach House",
-    price: 7500,
-    bookingFee: 65,
-    totalNights: 3,
-    startDate: "24 August 2024",
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      alert("Booking confirmed!");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      setError("Failed to submit booking.");
+    } finally {
+      setLoading(false);
+    }
   };
 
-
   return (
-    <div className='container mx-auto p-6'>
-
-      <div className='grid grid-cols-2 gap-6'>
-
-        <BookingForm/>
-
-        <OrderSummary bookingDetails={bookingDetails}/>
-
-        <CancellationPolicy/>
-
-      </div>
-
-
-    </div>
-  )
+    <form onSubmit={handleSubmit}>
+      {/* Form fields for booking details */}
+      <button type="submit" disabled={loading}>
+        {loading ? "Processing..." : "Confirm & Pay"}
+      </button>
+      {error && <p className="text-red-500">{error}</p>}
+    </form>
+  );
 }

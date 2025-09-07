@@ -1,5 +1,5 @@
 export interface CardProps {
-  
+  id?: string;
   title: string;
   price_perNight: number;
   city: string;
@@ -23,13 +23,18 @@ export interface ButtonProps {
 }
 
 
+
+interface Address {
+  state: string;
+  city: string;
+  country: string;
+}
+
 interface Offers {
   bed: string;
   shower: string;
   occupants: string;
 }
-
-
 
 export interface Review {
   date: string;
@@ -44,29 +49,29 @@ export interface Review {
 
 
 export interface PropertyProps {
-  id?:number | string;
-   name: string;
-   price: number;
-   rating: number;
-   address: {
-     state?: string;
-     city: string;
-     country: string;
-   };
-    images?: {
-     main: string;
-     others: string[];
-   };
-   reviews?: Review[];
-   description: string;
-   category: string[];
-   bedrooms: number;
-   bathrooms: number;
-   number_of_guests: string;
-   features: string[];
-   discount?: string;
-   offers?: Offers;
-   image?: string; 
-   // published:Date;
- 
- }
+ id?:number | string;
+  name: string;
+  price: number;
+  rating: number;
+  address: {
+    state?: string;
+    city: string;
+    country: string;
+  };
+   images?: {
+    main: string;
+    others: string[];
+  };
+  reviews?: Review[];
+  description: string;
+  category: string[];
+  bedrooms: number;
+  bathrooms: number;
+  number_of_guests: string;
+  features: string[];
+  discount?: string;
+  offers?: Offers;
+  image?: string; 
+  // published:Date;
+
+}
