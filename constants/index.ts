@@ -1,367 +1,707 @@
-
-export const DEFAULT_IMAGE = '/assets/apartment.jpg';
-
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "";
 import { PropertyProps } from "@/interfaces";
 
-export const PROPERTYLISTINGSAMPLE: PropertyProps []  =  [
+export const BUTTON_TEXT = {
+  all: "All",
+  topVilla: "Top Villa",
+  freeReschedule: "Free Reschedule",
+  bookNowPayLater: "Book Now, Pay later",
+  selfCheckin: "Self CheckIn",
+  instantBook: "Instant Book",
+  filter: "Filter",
+  sortByHighestPrice: "Sort by: Highest Price",
+
+  submit: "Submit",
+  cancel: "Cancel",
+  delete: "Delete",
+  edit: "Edit",
+  addToCart: "Add to Cart",
+  viewCart: "View Cart",
+  showMore: "Show More",
+  signIn: "Sign In",
+  signUp: "Sign Up",
+  moreInfo: "More Info",
+  goBackHome: "Go Back To Home Page",
+  save: "Save",
+  share: "Share",
+  showAll: "Show All Photo",
+};
+
+export const UI_TEXT = {
+  CARD: {
+    TITLE: 'Item Title',
+    PRICE_PER_NIGHT: 'Price',
+    CITY: 'City',
+    IMAGE: 'Image',
+    BEDROOMS: 'Bedrooms',
+    BATHROOMS: 'Bathrooms',
+    NUMBER_OF_GUESTS: 'Number of guests',
+    RATING: 'Rating',
+    FEATURES: ["Top Villa", "Self CheckIn", "Free Reschedule"],
+
+
+  },
+
+  SEARCH: {
+    DESTINATION: 'Destination',
+    CHECK_IN: 'Check-in Date',
+    CHECK_OUT: 'Check-out Date',
+    GUESTS: 'Guests',
+    SEARCH: 'Search',
+  },
+
+  ERROR_MESSAGES: {
+    REQUIRED_FIELD: 'This field is required.',
+    INVALID_EMAIL: 'Please enter a valid email address.',
+  },
+
+  SUCCESS_MESSAGES: {
+    ITEM_ADDED: 'Item successfully added to cart.',
+    ITEM_UPDATED: 'Item successfully updated.',
+  },
+
+  EXPLORE: {
+    APARTMENTS_IN_DUBAI: 'Apartments in Dubai',
+    APARTMENTS_IN_NEWYORK: 'Apartments in New York',
+    APARTMENTS_IN_SPAIN: 'Apartments in Spain',
+    APARTMENTS_IN_INDONESIA: 'Apartments in Indonesia',
+  },
+
+  COMPANY: {
+    ABOUT_US: 'About Us',
+    BLOG: 'Blog',
+    CAREER: 'Career',
+    CUSTOMERS: 'Customers',
+    BRAND: 'Brand',
+  },
+
+  HELP: {
+    SUPPORT: 'Support',
+    CANCEL_BOOKING: 'Cancel Booking',
+    REFUNDS_PROCESS: 'Refunds Process',
+  },
+
+  FOOTER: {
+    TERMS_OF_SERVICE: 'Terms of Service',
+    POLICY_SERVICE: 'Policy Service',
+    COOKIES_POLICY: 'Cookies Policy',
+    PARTNERS: 'Partners',
+  },
+
+
+  PROPERTY_CATEGORIES: [
+    { label: 'Rooms', icon: 'rooms' },
+    { label: 'Mansion', icon: 'mansion' },
+    { label: 'Countryside', icon: 'countryside' },
+    { label: 'Villa', icon: 'villa' },
+    { label: 'Tropical', icon: 'tropical' },
+    { label: 'New', icon: 'new' },
+    { label: 'Amazing pool', icon: 'pool' },
+    { label: 'Beach house', icon: 'beach-house' },
+    { label: 'Island', icon: 'island' },
+    { label: 'Camping', icon: 'camping' },
+    { label: 'Apartment', icon: 'apartment' },
+    { label: 'House', icon: 'house' },
+    { label: 'Lakefront', icon: 'lakefront' },
+    { label: 'Farm house', icon: 'farm-house' },
+    { label: 'Treehouse', icon: 'treehouse' },
+    { label: 'Cabins', icon: 'cabins' },
+    { label: 'Castles', icon: 'castles' },
+    { label: 'Lakeside', icon: 'lakeside', disabled: true },
+  ],
+}
+
+export const PROPERTYLISTINGSAMPLE: PropertyProps[] = [
   {
+    id: "1",
     name: "Villa Ocean Breeze",
-    address: {
-      state: "Seminyak",
-      city: "Bali",
-      country: "Indonesia"
-    },
+    address: { state: "Seminyak", city: "Bali", country: "Indonesia" },
     rating: 4.89,
     category: ["Luxury Villa", "Pool", "Free Parking"],
     price: 3200,
-    offers: {
-      bed: "3",
-      shower: "3",
-      occupants: "4-6"
+    offers: { bed: "3", shower: "3", occupants: "6" },
+    image: "/assets/main.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
-    image: "/assets/apartment.jpg",
-    discount: ""
+    discount: "",
+    description: "A tropical villa offering serenity, private pool, and ocean views.",
+    bedrooms: 3,
+    bathrooms: 3,
+    number_of_guests: "6",
+    features: ["Luxury Villa", "Pool", "Free Parking"],
+    reviews: [
+      {
+        user: "Kerry",
+        date: "2023-03-10",
+        period: "1 year on ALX",
+        trip: "Romantic Getaway",
+        avatar: "/assets/avatar.png",
+        rating: 5,
+        comment: "Amazing villa! The pool was sparkling clean and refreshing.",
+      },
+      {
+        user: "Liam",
+        date: "2023-04-15",
+        period: "New on ALX",
+        trip: "Business Retreat",
+        avatar: "/assets/avatar2.png",
+        rating: 4,
+        comment: "Spacious and beautiful, but WiFi could be better.",
+      },
+      {
+        user: "Sophia",
+        date: "2023-05-21",
+        period: "6 months on ALX",
+        trip: "Family Vacation",
+        avatar: "/assets/avatar3.png",
+        rating: 5,
+        comment: "Perfect for our family stay, kids loved the pool.",
+      },
+    ],
   },
   {
+    id: "2",
     name: "Mountain Escape Chalet",
-    address: {
-      state: "Aspen",
-      city: "Colorado",
-      country: "USA"
-    },
+    address: { state: "Aspen", city: "Colorado", country: "USA" },
     rating: 4.70,
     category: ["Mountain View", "Fireplace", "Self Checkin"],
     price: 1800,
-    offers: {
-      bed: "4",
-      shower: "2",
-      occupants: "5-7"
+    offers: { bed: "4", shower: "2", occupants: "7" },
+    image: "/assets/image15.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
-    image: "/assets/apartment.jpg",
-    discount: "30"
+    discount: "30",
+    description: "A cozy chalet in Aspen with stunning mountain views and a fireplace.",
+    bedrooms: 4,
+    bathrooms: 2,
+    number_of_guests: "7",
+    features: ["Mountain View", "Fireplace", "Self Checkin"],
+    reviews: [
+      {
+        user: "Charlie",
+        date: "2023-02-20",
+        period: "2 years on ALX",
+        trip: "Family Trip",
+        avatar: "/assets/avatar3.png",
+        rating: 5,
+        comment: "Perfect for a ski trip. Loved the fireplace!",
+      },
+      {
+        user: "Nina",
+        date: "2023-03-30",
+        period: "3 months on ALX",
+        trip: "Friends Reunion",
+        avatar: "/assets/avatar5.png",
+        rating: 4,
+        comment: "Great location, but the check-in process was a bit slow.",
+      },
+      {
+        user: "Lucas",
+        date: "2023-04-18",
+        period: "1 year on ALX",
+        trip: "Adventure Getaway",
+        avatar: "/assets/avatar6.png",
+        rating: 5,
+        comment: "Loved waking up to the mountain views!",
+      },
+    ],
   },
   {
+    id: "3",
     name: "Cozy Desert Retreat",
-    address: {
-      state: "Palm Springs",
-      city: "California",
-      country: "USA"
-    },
+    address: { state: "Palm Springs", city: "California", country: "USA" },
     rating: 4.92,
     category: ["Desert View", "Pet Friendly", "Self Checkin"],
     price: 1500,
-    offers: {
-      bed: "2",
-      shower: "1",
-      occupants: "2-3"
+    offers: { bed: "2", shower: "1", occupants: "3" },
+    image: "/assets/image8.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
-    image: "/assets/apartment.jpg",
-    discount: ""
+    discount: "",
+    description: "A charming retreat with desert views, great for couples or small families.",
+    bedrooms: 2,
+    bathrooms: 1,
+    number_of_guests: "3",
+    features: ["Desert View", "Pet Friendly", "Self Checkin"],
+    reviews: [
+      {
+        user: "Dana",
+        date: "2023-02-20",
+        period: "2 years on ALX",
+        trip: "Family Trip",
+        avatar: "/assets/avatar4.png",
+        rating: 5,
+        comment: "Charming and peaceful. Loved the desert views!",
+      },
+      {
+        user: "Ethan",
+        date: "2023-03-12",
+        period: "1 year on ALX",
+        trip: "Couples Escape",
+        avatar: "/assets/avatar7.png",
+        rating: 4,
+        comment: "Very cozy, but the air conditioning was a little noisy.",
+      },
+      {
+        user: "Olivia",
+        date: "2023-04-05",
+        period: "New on ALX",
+        trip: "Weekend Stay",
+        avatar: "/assets/avatar8.png",
+        rating: 5,
+        comment: "Such a relaxing place to unwind with pets!",
+      },
+    ],
   },
   {
-    name: "City Lights Penthouse",
-    address: {
-      state: "New York",
-      city: "New York",
-      country: "USA"
-    },
-    rating: 4.85,
-    category: ["City View", "Free WiFi", "24h Checkin"],
-    price: 4500,
-    offers: {
-      bed: "2",
-      shower: "2",
-      occupants: "2-4"
-    },
-    image: "/assets/apartment.jpg",
-    discount: "15"
-  },
-  {
-    name: "Riverside Cabin",
-    address: {
-      state: "Queenstown",
-      city: "Otago",
-      country: "New Zealand"
-    },
-    rating: 4.77,
-    category: ["Riverside", "Private Dock", "Free Kayaks"],
-    price: 2800,
-    offers: {
-      bed: "3",
-      shower: "2",
-      occupants: "4-6"
-    },
-    image: "/assets/apartment.jpg",
-    discount: "20"
-  },
-  {
-    name: "Modern Beachfront Villa",
-    address: {
-      state: "Sidemen",
-      city: "Bali",
-      country: "Indonesia"
-    },
-    rating: 4.95,
-    category: ["Beachfront", "Private Pool", "Chef Service"],
-    price: 5000,
-    offers: {
-      bed: "5",
-      shower: "4",
-      occupants: "8-10"
-    },
-    image: "/assets/apartment.jpg",
-    discount: ""
-  },
-  {
-    name: "Lakeside Chalet",
-    address: {
-      state: "Banff",
-      city: "Alberta",
-      country: "Canada"
-    },
+    id: "4",
+    name: "City Loft Apartment",
+    address: { state: "Manhattan", city: "New York", country: "USA" },
     rating: 4.65,
-    category: ["Lakeside", "Mountain View", "Hiking Trails"],
-    price: 2300,
-    offers: {
-      bed: "3",
-      shower: "3",
-      occupants: "4-5"
+    category: ["City Center", "Rooftop View", "Gym"],
+    price: 2500,
+    offers: { bed: "2", shower: "2", occupants: "4" },
+    image: "/assets/image9.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
-    image: "/assets/apartment.jpg",
-    discount: "10"
+    discount: "",
+    description: "Modern loft apartment in Manhattan with rooftop access and gym.",
+    bedrooms: 2,
+    bathrooms: 2,
+    number_of_guests: "4",
+    features: ["City Center", "Rooftop View", "Gym"],
+    reviews: [
+      {
+        user: "Mia",
+        date: "2023-01-22",
+        period: "6 months on ALX",
+        trip: "Business Stay",
+        avatar: "/assets/avatar9.png",
+        rating: 4,
+        comment: "Loved the location! Super central to everything.",
+      },
+      {
+        user: "Ryan",
+        date: "2023-02-14",
+        period: "2 years on ALX",
+        trip: "Solo Traveler",
+        avatar: "/assets/avatar10.png",
+        rating: 5,
+        comment: "Very modern and clean. Gym was a great bonus.",
+      },
+      {
+        user: "Ella",
+        date: "2023-03-07",
+        period: "New on ALX",
+        trip: "Weekend Getaway",
+        avatar: "/assets/avatar11.png",
+        rating: 4,
+        comment: "Stylish loft, but a bit noisy at night.",
+      },
+    ],
   },
   {
-    name: "Tropical Garden Villa",
-    address: {
-      state: "Koh Samui",
-      city: "Surat Thani",
-      country: "Thailand"
+    id: "5",
+    name: "Beachfront Paradise",
+    address: { state: "Cancun", city: "Quintana Roo", country: "Mexico" },
+    rating: 4.95,
+    category: ["Beachfront", "Pool", "Private Chef"],
+    price: 4000,
+    offers: { bed: "5", shower: "4", occupants: "10" },
+    image: "/assets/image10.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
-    rating: 4.80,
-    category: ["Garden", "Free Parking", "Self Checkin"],
-    price: 2750,
-    offers: {
-      bed: "3",
-      shower: "3",
-      occupants: "5-6"
-    },
-    image: "/assets/apartment.jpg",
-    discount: "25"
+    discount: "15",
+    description: "Luxury beachfront villa with pool and private chef services.",
+    bedrooms: 5,
+    bathrooms: 4,
+    number_of_guests: "10",
+    features: ["Beachfront", "Pool", "Private Chef"],
+    reviews: [
+      {
+        user: "Isabella",
+        date: "2023-02-10",
+        period: "3 years on ALX",
+        trip: "Family Reunion",
+        avatar: "/assets/avatar12.png",
+        rating: 5,
+        comment: "Absolutely breathtaking! Best vacation ever.",
+      },
+      {
+        user: "James",
+        date: "2023-03-19",
+        period: "1 year on ALX",
+        trip: "Group Trip",
+        avatar: "/assets/avatar13.png",
+        rating: 4,
+        comment: "Beautiful villa but a bit pricey.",
+      },
+      {
+        user: "Ava",
+        date: "2023-04-11",
+        period: "New on ALX",
+        trip: "Honeymoon",
+        avatar: "/assets/avatar14.png",
+        rating: 5,
+        comment: "Perfect romantic getaway with a private chef!",
+      },
+    ],
   },
-  {
-    name: "Urban Loft",
-    address: {
-      state: "Berlin",
-      city: "Berlin",
-      country: "Germany"
-    },
-    rating: 4.60,
-    category: ["City Center", "Free WiFi", "24h Checkin"],
-    price: 2000,
-    offers: {
-      bed: "2",
-      shower: "1",
-      occupants: "2-3"
-    },
-    image: "/assets/apartment.jpg",
-    discount: ""
-  },
-  {
-    name: "Secluded Forest Cabin",
-    address: {
-      state: "Whistler",
-      city: "British Columbia",
-      country: "Canada"
-    },
-    rating: 4.72,
-    category: ["Secluded", "Hot Tub", "Self Checkin"],
-    price: 2600,
-    offers: {
-      bed: "4",
-      shower: "2",
-      occupants: "5-7"
-    },
-    image: "/assets/apartment.jpg",
-    discount: "40"
-  },
-  {
-    name: "Cliffside Villa",
-    address: {
-      state: "Amalfi",
-      city: "Salerno",
-      country: "Italy"
-    },
-    rating: 4.93,
-    category: ["Cliffside", "Infinity Pool", "Sea View"],
-    price: 6000,
-    offers: {
-      bed: "4",
-      shower: "4",
-      occupants: "6-8"
-    },
-    image: "/assets/apartment.jpg",
-    discount: "50"
-  },
-  {
-    name: "Coastal Escape Villa",
-    address: {
-      state: "Noosa",
-      city: "Queensland",
-      country: "Australia"
-    },
-    rating: 4.83,
-    category: ["Beachfront", "Pet Friendly", "Free Parking"],
-    price: 3400,
-    offers: {
-      bed: "3",
-      shower: "3",
-      occupants: "4-6"
-    },
-    image: "/assets/apartment.jpg",
-    discount: ""
-  },
-  {
-    name: "Historical Villa",
-    address: {
-      state: "Florence",
-      city: "Tuscany",
-      country: "Italy"
-    },
-    rating: 4.67,
-    category: ["Historical", "Free Breakfast", "Self Checkin"],
-    price: 2700,
-    offers: {
-      bed: "2",
-      shower: "2",
-      occupants: "2-4"
-    },
-    image: "/assets/apartment.jpg",
-    discount: "35"
-  },
-  {
-    name: "Downtown Apartment",
-    address: {
-      state: "Tokyo",
-      city: "Tokyo",
-      country: "Japan"
-    },
-    rating: 4.81,
-    category: ["City Center", "Free WiFi", "Public Transport"],
+   {
+    id: "6",
+    name: "Lakeside Wooden Cabin",
+    address: { state: "Banff", city: "Alberta", country: "Canada" },
+    rating: 4.85,
+    category: ["Lake View", "Fireplace", "Hiking Trails"],
     price: 2200,
-    offers: {
-      bed: "1",
-      shower: "1",
-      occupants: "2"
+    offers: { bed: "3", shower: "2", occupants: "6" },
+    image: "/assets/image11.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
-    image: "/assets/apartment.jpg",
-    discount: ""
+    discount: "10",
+    description: "Rustic lakeside cabin surrounded by mountains, ideal for nature lovers.",
+    bedrooms: 3,
+    bathrooms: 2,
+    number_of_guests: "6",
+    features: ["Lake View", "Fireplace", "Hiking Trails"],
+    reviews: [
+      {
+        user: "Mason",
+        date: "2023-05-10",
+        period: "1 year on ALX",
+        trip: "Nature Retreat",
+        avatar: "/assets/avatar15.png",
+        rating: 5,
+        comment: "Incredible views of the lake and trails nearby!",
+      },
+      {
+        user: "Emma",
+        date: "2023-06-01",
+        period: "2 years on ALX",
+        trip: "Couples Escape",
+        avatar: "/assets/avatar16.png",
+        rating: 4,
+        comment: "Very cozy, just a bit chilly at night.",
+      },
+      {
+        user: "Noah",
+        date: "2023-06-25",
+        period: "6 months on ALX",
+        trip: "Family Trip",
+        avatar: "/assets/avatar17.png",
+        rating: 5,
+        comment: "Kids loved the lake! Perfect family getaway.",
+      },
+    ],
   },
   {
+    id: "7",
     name: "Luxury Safari Lodge",
-    address: {
-      state: "Serengeti",
-      city: "Mara",
-      country: "Tanzania"
+    address: { state: "Kruger", city: "Limpopo", country: "South Africa" },
+    rating: 4.90,
+    category: ["Wildlife View", "Guided Tours", "All Inclusive"],
+    price: 3700,
+    offers: { bed: "6", shower: "5", occupants: "12" },
+    image: "/assets/image12.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
+    discount: "",
+    description: "Luxury lodge in Kruger with wildlife views and guided safari tours.",
+    bedrooms: 6,
+    bathrooms: 5,
+    number_of_guests: "12",
+    features: ["Wildlife View", "Guided Tours", "All Inclusive"],
+    reviews: [
+      {
+        user: "Grace",
+        date: "2023-03-14",
+        period: "1 year on ALX",
+        trip: "Adventure Safari",
+        avatar: "/assets/avatar18.png",
+        rating: 5,
+        comment: "Saw lions and elephants right outside the lodge!",
+      },
+      {
+        user: "Ethan",
+        date: "2023-04-10",
+        period: "New on ALX",
+        trip: "Photography Tour",
+        avatar: "/assets/avatar19.png",
+        rating: 5,
+        comment: "Amazing photo opportunities, staff were fantastic.",
+      },
+      {
+        user: "Hannah",
+        date: "2023-06-03",
+        period: "2 years on ALX",
+        trip: "Group Tour",
+        avatar: "/assets/avatar20.png",
+        rating: 4,
+        comment: "Loved it, but wish WiFi was stronger.",
+      },
+    ],
+  },
+  {
+    id: "8",
+    name: "Seaside Modern Villa",
+    address: { state: "Santorini", city: "Oia", country: "Greece" },
     rating: 4.97,
-    category: ["Safari", "Guided Tours", "Free Breakfast"],
+    category: ["Sea View", "Infinity Pool", "Luxury"],
     price: 4500,
-    offers: {
-      bed: "4",
-      shower: "4",
-      occupants: "6-8"
+    offers: { bed: "4", shower: "3", occupants: "8" },
+    image: "/assets/image13.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
-    image: "/assets/apartment.jpg",
-    discount: "20"
+    discount: "20",
+    description: "Cliffside villa in Santorini with infinity pool overlooking the sea.",
+    bedrooms: 4,
+    bathrooms: 3,
+    number_of_guests: "8",
+    features: ["Sea View", "Infinity Pool", "Luxury"],
+    reviews: [
+      {
+        user: "Sophia",
+        date: "2023-07-01",
+        period: "3 years on ALX",
+        trip: "Honeymoon",
+        avatar: "/assets/avatar21.png",
+        rating: 5,
+        comment: "The infinity pool was unreal. Dream honeymoon!",
+      },
+      {
+        user: "Jack",
+        date: "2023-07-20",
+        period: "New on ALX",
+        trip: "Couples Retreat",
+        avatar: "/assets/avatar22.png",
+        rating: 5,
+        comment: "Absolutely stunning views. Worth every penny.",
+      },
+      {
+        user: "Aria",
+        date: "2023-08-11",
+        period: "1 year on ALX",
+        trip: "Family Vacation",
+        avatar: "/assets/avatar23.png",
+        rating: 4,
+        comment: "Loved it, but steps were steep for kids.",
+      },
+    ],
   },
   {
-    name: "Countryside Cottage",
-    address: {
-      state: "Cotswolds",
-      city: "Gloucestershire",
-      country: "UK"
-    },
-    rating: 4.58,
-    category: ["Countryside", "Fireplace", "Self Checkin"],
-    price: 1800,
-    offers: {
-      bed: "2",
-      shower: "1",
-      occupants: "2-4"
-    },
-    image: "/assets/apartment.jpg",
-    discount: "25"
-  },
-  {
-    name: "Riverfront Mansion",
-    address: {
-      state: "Paris",
-      city: "Île-de-France",
-      country: "France"
-    },
-    rating: 4.86,
-    category: ["Riverfront", "Private Garden", "Self Checkin"],
-    price: 5000,
-    offers: {
-      bed: "4",
-      shower: "3",
-      occupants: "6-8"
-    },
-    image: "/assets/apartment.jpg",
-    discount: "30"
-  },
-  {
-    name: "Ski Chalet",
-    address: {
-      state: "Zermatt",
-      city: "Valais",
-      country: "Switzerland"
-    },
+    id: "9",
+    name: "Rustic Countryside Farmhouse",
+    address: { state: "Tuscany", city: "Florence", country: "Italy" },
     rating: 4.75,
-    category: ["Mountain View", "Ski Access", "Fireplace"],
-    price: 3900,
-    offers: {
-      bed: "3",
-      shower: "3",
-      occupants: "4-5"
+    category: ["Countryside", "Vineyards", "Traditional"],
+    price: 2100,
+    offers: { bed: "3", shower: "2", occupants: "5" },
+    image: "/assets/image2.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
-    image: "/assets/apartment.jpg",
-    discount: ""
+    discount: "",
+    description: "Farmhouse in Tuscany surrounded by vineyards and rolling hills.",
+    bedrooms: 3,
+    bathrooms: 2,
+    number_of_guests: "5",
+    features: ["Countryside", "Vineyards", "Traditional"],
+    reviews: [
+      {
+        user: "Olivia",
+        date: "2023-05-14",
+        period: "2 years on ALX",
+        trip: "Wine Tour",
+        avatar: "/assets/avatar24.png",
+        rating: 5,
+        comment: "Perfect for wine lovers, beautiful vineyard views.",
+      },
+      {
+        user: "Liam",
+        date: "2023-06-02",
+        period: "1 year on ALX",
+        trip: "Romantic Stay",
+        avatar: "/assets/avatar25.png",
+        rating: 4,
+        comment: "Authentic farmhouse experience, very rustic charm.",
+      },
+      {
+        user: "Sofia",
+        date: "2023-06-28",
+        period: "6 months on ALX",
+        trip: "Family Vacation",
+        avatar: "/assets/avatar26.png",
+        rating: 5,
+        comment: "Great location for exploring Tuscany.",
+      },
+    ],
   },
   {
-    name: "Island Paradise Villa",
-    address: {
-      state: "Mahe",
-      city: "Victoria",
-      country: "Seychelles"
+    id: "10",
+    name: "Ski-in Ski-out Chalet",
+    address: { state: "Chamonix", city: "Haute-Savoie", country: "France" },
+    rating: 4.88,
+    category: ["Ski Access", "Hot Tub", "Fireplace"],
+    price: 3200,
+    offers: { bed: "5", shower: "4", occupants: "9" },
+    image: "/assets/image16.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
-    rating: 4.98,
-    category: ["Beachfront", "Private Pool", "Chef Service"],
-    price: 6500,
-    offers: {
-      bed: "5",
-      shower: "5",
-      occupants: "8-10"
-    },
-    image: "/assets/apartment.jpg",
-    discount: "60"
+    discount: "25",
+    description: "Chalet with direct ski slope access, hot tub, and mountain views.",
+    bedrooms: 5,
+    bathrooms: 4,
+    number_of_guests: "9",
+    features: ["Ski Access", "Hot Tub", "Fireplace"],
+    reviews: [
+      {
+        user: "Leo",
+        date: "2023-01-30",
+        period: "1 year on ALX",
+        trip: "Ski Trip",
+        avatar: "/assets/avatar27.png",
+        rating: 5,
+        comment: "Amazing location right on the slopes!",
+      },
+      {
+        user: "Ella",
+        date: "2023-02-15",
+        period: "2 years on ALX",
+        trip: "Couples Holiday",
+        avatar: "/assets/avatar28.png",
+        rating: 4,
+        comment: "Loved the hot tub, but kitchen was a bit small.",
+      },
+      {
+        user: "Mateo",
+        date: "2023-03-03",
+        period: "6 months on ALX",
+        trip: "Family Ski",
+        avatar: "/assets/avatar29.png",
+        rating: 5,
+        comment: "Perfect for families who ski!",
+      },
+    ],
   },
   {
-    name: "Clifftop Retreat",
-    address: {
-      state: "Cape Town",
-      city: "Western Cape",
-      country: "South Africa"
+    id: "11",
+    name: "Island Overwater Bungalow",
+    address: { state: "Male", city: "Maldives", country: "Maldives" },
+    rating: 5.0,
+    category: ["Overwater", "Private Deck", "Luxury"],
+    price: 5500,
+    offers: { bed: "2", shower: "2", occupants: "4" },
+    image: "/assets/image17.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
-    rating: 4.78,
-    category: ["Ocean View", "Private Pool", "Self Checkin"],
-    price: 4100,
-    offers: {
-      bed: "3",
-      shower: "3",
-      occupants: "4-5"
+    discount: "",
+    description: "Iconic overwater bungalow in Maldives with private deck and direct ocean access.",
+    bedrooms: 2,
+    bathrooms: 2,
+    number_of_guests: "4",
+    features: ["Overwater", "Private Deck", "Luxury"],
+    reviews: [
+      {
+        user: "Maya",
+        date: "2023-04-12",
+        period: "1 year on ALX",
+        trip: "Honeymoon",
+        avatar: "/assets/avatar30.png",
+        rating: 5,
+        comment: "The most beautiful place we’ve ever stayed!",
+      },
+      {
+        user: "Ethan",
+        date: "2023-05-03",
+        period: "2 years on ALX",
+        trip: "Couples Holiday",
+        avatar: "/assets/avatar31.png",
+        rating: 5,
+        comment: "Swimming right off the deck was incredible.",
+      },
+      {
+        user: "Zoe",
+        date: "2023-05-25",
+        period: "New on ALX",
+        trip: "Anniversary",
+        avatar: "/assets/avatar32.png",
+        rating: 5,
+        comment: "Perfect anniversary stay, so private and luxurious.",
+      },
+    ],
+  },
+  {
+    id: "12",
+    name: "Japanese Ryokan",
+    address: { state: "Kyoto", city: "Kyoto", country: "Japan" },
+    rating: 4.80,
+    category: ["Traditional", "Hot Springs", "Cultural"],
+    price: 2000,
+    offers: { bed: "2", shower: "1", occupants: "3" },
+    image: "/assets/image18.png",
+    images: {
+      main: "/assets/image2.png",
+      others: ["/assets/image3.png", "/assets/image4.png", "/assets/image5.png"],
     },
-    image: "/assets/apartment.jpg",
-    discount: ""
-  }
+    discount: "15",
+    description: "Traditional Japanese inn with tatami rooms and natural hot springs.",
+    bedrooms: 2,
+    bathrooms: 1,
+    number_of_guests: "3",
+    features: ["Traditional", "Hot Springs", "Cultural"],
+    reviews: [
+      {
+        user: "Haruto",
+        date: "2023-06-01",
+        period: "2 years on ALX",
+        trip: "Cultural Tour",
+        avatar: "/assets/avatar33.png",
+        rating: 5,
+        comment: "Authentic Japanese experience with amazing food.",
+      },
+      {
+        user: "Aiko",
+        date: "2023-06-20",
+        period: "6 months on ALX",
+        trip: "Couples Escape",
+        avatar: "/assets/avatar34.png",
+        rating: 4,
+        comment: "Loved the hot springs, but futons were a bit firm.",
+      },
+      {
+        user: "Yuto",
+        date: "2023-07-05",
+        period: "1 year on ALX",
+        trip: "Solo Travel",
+        avatar: "/assets/avatar35.png",
+        rating: 5,
+        comment: "Peaceful and culturally enriching stay.",
+      },
+    ],
+  },
+
 ];
+
+
+export const BACKGROUND_IMAGE = "/assets/bg.png";
